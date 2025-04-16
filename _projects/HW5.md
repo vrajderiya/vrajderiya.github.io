@@ -62,20 +62,34 @@ This encoding scheme ensures users can easily compare values across different st
 
 
 **Description**
-<p> I chose to visualize the precipation intensity and visibility of bigfoot sightings in different U.S. counties from 1990-2015. The visualization method I chose is a scatter plot with point paths on hover with search box. This allows the user to search for a county and that specific point is highlighted on the graph if a data point exists for a certain year. The user can also use the slider to modify the year in 5 year increments. I chose a step size of 5 to be able to parse through the years quickly rather than one by one. I also narrowed from 1990-2015 because many bigfoot sightings were not spotted before 1990. I chose 2015 as the upper limit so there is no discrepancy when the user interacts with the slider. When set to another value, the slider cannot reach its maximum value which is misleading to the user. When a user clicks on a dot, a trail is created between other dots for the same county even if the years are different. These dots are also color coded by classification to determine class of a bigfoot finding. I also allowed the user to pan and zoom with this graph becauses some of the data points are clustered, making it difficult to read the years and county names as well as being able to view a line between the data points. </p>
+<p> I designed an interactive map of Bigfoot sightings across the U.S., overlaid on a geoshape map of state borders. The main purpose of this visualization is to allow users to explore the geographic spread of Bigfoot sightings and filter them by classification (Class A, B, or C). This type of interaction empowers the user to investigate potential patterns in report types and locations.
+
+I added a dropdown menu where the user can select a classification. Once selected, only sightings of that type appear on the map. This prevents overcrowding and makes it easier to focus on relevant data. The points on the map are colored by classification and sized consistently for clarity. Tooltips provide contextual information for each sighting. </p>
 
 **Data Transformations**
-<p> I first converted date to datetime so I can then convert it into a year to be used as an integer for my visualization: </p>
+<p> The dataset was cleaned by:
+Converting the date column to datetime format to extract the year:</p>
 <ul>
-<li>df_cleaned['date'] = pd.to_datetime(df_cleaned['date'], errors='coerce')</li>
-<li>df_cleaned['year'] = df_cleaned['date'].dt.year</li>
+<li>df['date'] = pd.to_datetime(df['date'], errors='coerce')</li>
+<li>df['year'] = df['date'].dt.year</li>
 </ul>
+<p>Removing rows with missing values in essential columns:</p>
+<ul>
+<li>df = df.dropna(subset=['latitude', 'longitude', 'classification'])</li>
+</ul>
+<p>This ensured all points plotted on the map have valid coordinates and a classification type.</p>
 
 **Encoding**
-<p>I encoded 'precip_intensity' as a quantitative variable because the values are numerical. The same goes for visibility. I encoded 'county' as a nominal variable since county is a categorical variable. The text variable determines what text is displayed on the graph and this allows the user to see a county when they click on a specific data point. The opacity variable helps determine the level of shading a data point inherits when a user clicks on it. When the user clicks on a data point, the value is one and when unselected, the value is zero. I used the 'dark2' color scheme for classification because classification is an ordinal categorical variable. The color of the line is darker for enhanced readability, especially if there are other unrelated data points around. For the base trail, the year variable is a quantitative variable to connect the data points and to also determine the thickness of the line in numerical order. For the base text, year was encoded as an ordinal variable because year is being treated as a label which usually works well with categorical variables. As a quantitative variable, certain scaling transformations may apply which can affect the way year is displayed on the graph. </p>
+<p>In the interactive map:
+longitude and latitude are quantitative variables used for geographic positioning.
+classification is a nominal variable used to color the dots.
+Tooltips show date, state, location_details, and classification for each point.
+The map uses an Albers USA projection, which is well-suited for visualizing data across all U.S. states.
+A dropdown menu enables filtering via alt.selection_point() and alt.binding_select().
+The base map of the U.S. provides geographic context, while the colored points indicate specific sightings filtered by category. </p>
 
 **Interesting Observation!**
-<p> I noticed that some counties do not have lines connecting their data points while some do. This may be due to the fact that there is not a notable change in data or there is not enough data for a specific county. Some counties have only one data point so no connecting line is formed. It is also possible that showing lines for certain counties may be convoluting and not display a specific trend, so no connecting line is displayed. </p>
+<p> When filtering by Class A sightings (the most credible ones), there is a visible clustering around the Pacific Northwest, including Washington and Oregon. This supports the idea that these regions are hotspots for serious Bigfoot reports. Meanwhile, Class B and C sightings appear more randomly distributed, perhaps indicating less consistency or reliability. The interactive nature of the map makes it easy to switch between classifications and compare patterns directly. </p>
 
 <div class="left">
 {% include elements/button.html link="https://github.com/spatel54/spatel54.github.io/blob/725f63d7ebc40c615a8ff2f72891eef93d7db924/assets/json/bfro_reports_fall2022.json" text="The Data" %}
