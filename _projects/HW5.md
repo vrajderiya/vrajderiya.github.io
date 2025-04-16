@@ -22,35 +22,32 @@ permalink: /projects/HW5
 <iframe src="/assets/plots/zselection_plot.html" width="100%" height="600" style="border:none;"></iframe>
 
 **Description**
-<p>I chose to visualize the longitude and latitude of different bigfoot sightings across all U.S. states using a selection zorder visualization. The purpose of this graph is to visually observe the frequency of bigfoot sightings in different U.S. states. I chose this visualization method to improve user interactivity and clarity by moving highlighted dots forward. Normally, it is difficult to select dots on a graph due to the small size of the dots. However, with selection zorder, highlighted dots come forward and other dots are minimized. As the user moves their cursor across the screen, the closest dot to the cursor appears in the foreground the other dots remain in the background to prevent overlapping. This reducing confusion and frustration during interpretation.</p>
+<p>I created a static bar chart to show the total number of Bigfoot sightings reported in each U.S. state. The goal of this visualization is to provide a clear overview of where Bigfoot sightings are most commonly reported. This helps users quickly identify states with the highest or lowest number of reports. I chose this method because bar charts are ideal for comparing categorical data (states) against a quantitative variable (number of sightings).
+
+To enhance interpretability, I used the "oranges" color scheme, where darker bars represent higher sighting counts. The states are sorted in descending order by number of sightings, allowing the user to scan from most to least active regions. I also included tooltips showing the exact count and state name for easy reference.</p>
 
 
 **Data Transformations**
-<p>I first started to see which data values I could replace with zero. However, I decided not to replace certain columns, such as 'date', with zero because 'date' cannot logically have a zero value. Instead, I chose to replace NaN values for the following columns:</p>
+<p>I used the raw dataset of Bigfoot reports and created a summary dataframe that counted sightings per state:</p>
 
 <ul>
-<li> df['temperature_high'] = df['temperature_high'].replace(0, np.nan) </li>
-<li> df['temperature_low'] = df['temperature_high'].replace(0, np.nan) </li>
-<li> df['dew_point'] = df['dew_point'].replace(0, np.nan) </li>
-<li> df['humidity'] = df['humidity'].replace(0, np.nan) </li>
-<li> df['cloud_cover'] = df['cloud_cover'].replace(0, np.nan) </li>
-<li> df['moon_phase'] = df['moon_phase'].replace(0, np.nan) </li>
-<li> df['precip_intensity'] = df['precip_intensity'].replace(0, np.nan) </li>
-<li> df['precip_probability'] = df['precip_probability'].replace(0, np.nan) </li>
-<li> df['pressure'] = df['pressure'].replace(0, np.nan) </li>
-<li> df['visibility'] = df['visibility'].replace(0, np.nan) </li>
-<li> df['uv_index'] = df['uv_index'].replace(0, np.nan) </li>
-<li> df['wind_bearing'] = df['wind_bearing'].replace(0, np.nan) </li>
-<li> df['wind_speed'] = df['wind_speed'].replace(0, np.nan) </li>
+<li> state_counts = df['state'].value_counts().reset_index() </li>
+<li> state_counts.columns = ['state', 'sightings'] </li>
 </ul>
 
-Then I proceeded to drop NaN values for the rest of the columns that I found had null values in.
+This transformation helped convert the raw report-level data into an aggregate form suitable for a bar chart.
 
 **Encoding**
-<p> I used longitude as a quantitative variable for the X-axis and latitude as a quantitative variable for the Y-axis to map the sightings across the U.S. As a result, the points on the graph resemble the U.S. map, making the visualization easier to interpret. I chose the 'category20' color scheme to represent the different states. While some colors repeat, 'category20' was one of the few color schemes with a larger color palette. To address this, I increased the size of the legend to include more symbols, making it easier for users to discern which state a specific sighting belongs to. Additionally, I split the states into two columns to improve the legend's readability. I incorporated the following fields as tooltip values: 'longitude:Q', 'latitude:Q', 'visibility:Q', 'wind_speed:Q', 'date:N', 'state:N', 'county:N', 'season:N', and 'cloud_cover:Q'. These values were selected to help assess the validity and reliability of bigfoot sightings. Visibility indicates whether a bigfoot could be seen, while cloud cover determines how much light passes through the clouds, indirectly affecting visibility and the likelihood of a sighting. Wind speed, which can make it harder to spot anything, was also included as an interesting metric. Longitude and latitude provide the exact location, while county and state further describe the sighting's location. The date specifies when the sighting occurred. I added the 'add_params' encoding parameter to enable the hover effect for zselection. Finally, I created a side-by-side comparison to demonstrate how the graph appears when the points are obscured versus when they are not. </p>
+<p> In this bar chart:
+state is encoded as a nominal variable on the x-axis and sorted by descending count.
+sightings is a quantitative variable on the y-axis.
+Color is based on the number of sightings, using a continuous gradient to represent frequency.
+Tooltips display both the state name and the number of sightings.
+
+This encoding scheme ensures users can easily compare values across different states and spot trends in the distribution of Bigfoot reports. </p>
 
 **Interesting Observation!**
-<p>I was surprised to see that many bigfoot sightings were not spotted in Alaska due to its relative remoteness. This does make sense since Alaska has a lower population compared to the rest of the U.S., which means fewer sightings are reported. I do wonder if the reported sightings would increase if the population in Alaska were to increase. I was surprised to see these sightings be reported even when the cloud cover was above 0.8 for all three reportings. However, other factors such as wind speed and visibility also determine the likelihood of a sighting, which is why it is possible these sightings were reported.</p>
+<p>Washington state leads with the highest number of reported Bigfoot sightings, which supports its reputation in folklore. States like California and Ohio also rank highly. Interestingly, some large states such as Nevada and Nebraska show surprisingly low numbers of sightings. This might reflect differences in population density, local belief systems, or even terrain visibility that affects whether or not people report unusual sightings.</p>
 
 
 <br>
