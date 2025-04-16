@@ -1,0 +1,19 @@
+1.This bar chart visualizes the number of Bigfoot sightings reported in each U.S. state, based on the BFRO (Bigfoot Field Researchers Organization) dataset. The purpose of this visualization is to give a clear overview of which states have the highest reported activity. For the design, I used a vertical bar chart with the states on the x-axis (state:N) and the total number of sightings on the y-axis (sightings:Q). To highlight the frequency visually, I applied a quantitative color encoding using a sequential "oranges" color scheme, where states with more sightings appear darker. This choice reinforces the visual density of sightings in a natural, intuitive way. On the analysis side, I performed a basic aggregation using value_counts() to count sightings per state, then converted this into a DataFrame and renamed the columns for use in Altair.
+
+2.This map shows individual Bigfoot sightings across the United States, plotted by their geographic coordinates (latitude and longitude) and colored by the classification of each sighting.
+Meaning of Classifications:
+Class A: High-credibility reports involving clear sightings with minimal doubt, often by reliable observers.
+Class B: Incidents where a Bigfoot might have been seen, heard, or had evidence (e.g., footprints), but the sighting conditions were poor.
+Class C: Reports with indirect or second-hand information, often with lower credibility or less
+detail.
+I layered this data on top of a TopoJSON-rendered U.S. map using Altair's mark_geoshape() and
+projected it using the albersUsa projection. To enhance visual clarity, each sighting is
+represented by a semi-transparent circle (mark_circle) whose color reflects the classification
+type, with a legend for user reference. The map uses an interactive dropdown selector
+(alt.binding_select) that allows users to filter sightings by classification, updating the map in
+real-time. This interactivity was implemented using alt.selection_point() and a filter transform,
+which goes beyond the default .interactive() behavior. It makes the visualization more engaging
+and functional by helping the viewer explore the geographic distribution of specific types of
+sightings. For analysis, I cleaned the data by parsing the date field into datetime format, then
+extracted the year and dropped records missing critical fields like latitude, longitude, or
+classification.
