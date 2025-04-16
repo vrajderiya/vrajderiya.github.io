@@ -85,6 +85,6 @@ Then I proceeded to drop NaN values for the rest of the columns that I found had
 </div>
 
 <div class="right">
-{% include elements/button.html link="https://github.com/spatel54/spatel54.github.io/blob/725f63d7ebc40c615a8ff2f72891eef93d7db924/python_notebooks/Workbook_1.ipynb" text="The Analysis" %}
+{% include elements/button.html link="https://github.com/vrajderiya/vrajderiya.github.io/blob/main/Workbook.ipynb" text="The Analysis" %}
 </div>
 
