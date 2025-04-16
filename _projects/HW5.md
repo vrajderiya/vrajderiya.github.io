@@ -92,7 +92,7 @@ The base map of the U.S. provides geographic context, while the colored points i
 <p> When filtering by Class A sightings (the most credible ones), there is a visible clustering around the Pacific Northwest, including Washington and Oregon. This supports the idea that these regions are hotspots for serious Bigfoot reports. Meanwhile, Class B and C sightings appear more randomly distributed, perhaps indicating less consistency or reliability. The interactive nature of the map makes it easy to switch between classifications and compare patterns directly. </p>
 
 <div class="left">
-{% include elements/button.html link="https://github.com/spatel54/spatel54.github.io/blob/725f63d7ebc40c615a8ff2f72891eef93d7db924/assets/json/bfro_reports_fall2022.json" text="The Data" %}
+{% include elements/button.html link="https://raw.githubusercontent.com/UIUC-iSchool-DataViz/is445_data/main/bfro_reports_fall2022.csv" text="The Data" %}
 </div>
 
 <div class="right">
