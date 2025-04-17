@@ -19,8 +19,6 @@ permalink: /projects/HW5
 
 ##  Plot 1 - Static Bar Chart
 
-<iframe src="/assets/plots/zselection_plot.html" width="100%" height="600" style="border:none;"></iframe>
-
 **Description**
 <p>I created a static bar chart to show the total number of Bigfoot sightings reported in each U.S. state. The goal of this visualization is to provide a clear overview of where Bigfoot sightings are most commonly reported. This helps users quickly identify states with the highest or lowest number of reports. I chose this method because bar charts are ideal for comparing categorical data (states) against a quantitative variable (number of sightings).
 
@@ -57,9 +55,6 @@ This encoding scheme ensures users can easily compare values across different st
 <br>
 
 ##  Plot 2 - Interactive Map
-
-<iframe src="/assets/plots/scatter_plot.html" width="130%" height="950" style="border:none;"></iframe>
-
 
 **Description**
 <p> I designed an interactive map of Bigfoot sightings across the U.S., overlaid on a geoshape map of state borders. The main purpose of this visualization is to allow users to explore the geographic spread of Bigfoot sightings and filter them by classification (Class A, B, or C). This type of interaction empowers the user to investigate potential patterns in report types and locations.
