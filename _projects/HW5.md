@@ -17,7 +17,7 @@ permalink: /projects/HW5
 
 <br>
 
-##  Plot 1 - Mapping bigfoot sightings across longitude and latitude using zselection
+##  Plot 1 - Static Bar Chart
 
 <iframe src="/assets/plots/zselection_plot.html" width="100%" height="600" style="border:none;"></iframe>
 
@@ -56,7 +56,7 @@ This encoding scheme ensures users can easily compare values across different st
 <br>
 <br>
 
-##  Plot 2 - Viewing classified bigfoot sightings across different U.S. counties from 1950-2018 using a scatter plot
+##  Plot 2 - Interactive Map
 
 <iframe src="/assets/plots/scatter_plot.html" width="130%" height="950" style="border:none;"></iframe>
 
