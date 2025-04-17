@@ -1,7 +1,7 @@
 ---
 name: BigFoot Exploration Dataset
 tools: [Python, HTML, vega-lite, altair]
-image: assets/pngs/bigfoot.png
+image: assets/pngs/HW5.pdf
 description: This notebook shows two different visualizations for the bigfoot dataset!
 custom_js:
   - vega.min
